@@ -10,11 +10,5 @@ let config = {
   messagingSenderId: '978957331343'
 }
 let homeContent = firebase.initializeApp(config)
-let db = homeContent.database()
-let headingsRef = db.ref('stuff')
 
-export default {
-  firebase: {
-    headings: headingsRef
-  }
-}
+export const db = homeContent.database();

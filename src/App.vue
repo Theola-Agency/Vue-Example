@@ -17,9 +17,6 @@ import Navigation from './components/router/Navigation.vue'
 import Scroll from './components/scroll/Scroll.vue'
 import HandleScroll from './components/scroll/handle-scroll'
 
-/**
- * Posts demo with ability to change author
- */
 export default {
   name: 'app',
   components: {
@@ -33,10 +30,10 @@ export default {
 <style lang="scss">
 
 #app {
-  padding-top             : 60px;
-  padding-bottom          : 60px;
-  overflow-y              : scroll;
-  max-height              : 100vh;
+  padding-top    : 60px;
+  padding-bottom : 60px;
+  overflow-y     : scroll;
+  max-height     : 100vh;
 }
 
 </style>

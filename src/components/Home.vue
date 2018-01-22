@@ -9,25 +9,12 @@
 </template>
 
 <script>
-import GetHomeContent from './firebase/get-home-content'
+import {db} from './firebase/get-content'
 
 export default {
   name: 'app',
-  data () {
-    return {
-      headings: {
-        Person1: {
-          heading: 'Default',
-          subheading: 'Default',
-          content: 'Default'
-        },
-        Person2: {
-          heading: 'Default',
-          subheading: 'Default',
-          content: 'Default' }
-      }
-    }
-  },
-  mixins: [GetHomeContent]
+  firebase: {
+    headings: db.ref('stuff')
+  }
 }
 </script>

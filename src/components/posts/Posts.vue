@@ -3,16 +3,25 @@
     <h1>WordPress Posts in Vue.js</h1>
     <h2 class="post-title">These are the latest posts in the 100 Creek dev site</h2>
     <p>Current Author: <code>{{ currentAuthor }}</code></p>
+    <div class="alert alert-info">These posts are being pulled in from a WordPress site's database through the WP Rest API.</div>
     <div v-for="post in posts" v-bind:key="post.id">
       <div class="post">
         <h2 class="post-title" v-html="post.title.rendered"></h2>
-        <a v-if="post._embedded['wp:featuredmedia'][0].media_details.sizes['full']" :href="post.link">
-          <img :src="post._embedded['wp:featuredmedia'][0].media_details.sizes['full'].source_url" />
+        <a
+        v-if="post._embedded['wp:featuredmedia'][0].media_details.sizes['full']"
+        :href="post.link">
+          <img
+          :src="post._embedded['wp:featuredmedia'][0].media_details.sizes['full'].source_url" />
         </a>
-        <div class="excerpt" v-if="post.excerpt.rendered" v-html="post.excerpt.rendered.split(excerptFilter)[0]"></div>
-        <div class="entry-meta" v-if="post._embedded.author[0]">
-          <a class="author-wrap" :href="post._embedded.author[0].link">by&nbsp; {{ post._embedded.author[0].name }} </a>
-          <a class="btn btn-primary read-more float-right" :href="post.link">Read More &raquo;</a>
+        <div class="excerpt"
+        v-if="post.excerpt.rendered"
+        v-html="post.excerpt.rendered.split(excerptFilter)[0]"></div>
+        <div class="entry-meta"
+        v-if="post._embedded.author[0]">
+          <a class="author-wrap"
+          :href="post._embedded.author[0].link">by&nbsp; {{ post._embedded.author[0].name }} </a>
+          <a class="btn btn-primary read-more float-right"
+          :href="post.link">Read More &raquo;</a>
         </div>
       </div>
     </div>
@@ -26,7 +35,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 .author-toggle-wrap {
 	display: block;
