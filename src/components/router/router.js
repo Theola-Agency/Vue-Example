@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import HomeLayout from '../Home.vue'
 import BlogLayout from '../posts/Posts.vue'
 import ScrollLayout from '../scroll/Scroll.vue'
+import InputsLayout from '../inputs/Inputs.vue'
 
 Vue.use(Router)
 
@@ -23,6 +24,11 @@ export default new Router({
       path: '/scroll',
       name: 'Scroll',
       component: ScrollLayout
+    },
+    {
+      path: '/inputs',
+      name: 'Inputs',
+      component: InputsLayout
     }
   ]
 })
