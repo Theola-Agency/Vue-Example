@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div v-for="(item, key) in headings" :key="key">
       <h1>{{ item.heading }}</h1>
       <h2>{{ item.subheading }}</h2>

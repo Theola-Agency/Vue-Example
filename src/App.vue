@@ -1,7 +1,7 @@
 <template>
   <div id="app"
   @scroll="handleScroll">
-    <div class="container" ref="homecontainer">
+    <div ref="homecontainer">
     <navbar/>
     <keep-alive>
       <router-view/>
@@ -34,6 +34,11 @@ export default {
   padding-bottom : 60px;
   overflow-y     : scroll;
   max-height     : 100vh;
+}
+
+pre {
+  background : lightgray;
+  padding    : 10px;
 }
 
 </style>

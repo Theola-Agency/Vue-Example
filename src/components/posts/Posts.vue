@@ -1,9 +1,12 @@
 <template>
-  <div class="post-wrapper">
+  <div class="container post-wrapper">
     <h1>WordPress Posts in Vue.js</h1>
-    <h2 class="post-title">These are the latest posts in the 100 Creek dev site</h2>
+    <h2 class="post-title">Latest posts in the 100 Creek dev site</h2>
     <p>Current Author: <code>{{ currentAuthor }}</code></p>
-    <div class="alert alert-info">These posts are being pulled in from a WordPress site's database through the WP Rest API.</div>
+    <div class="alert alert-info">
+      These posts are being pulled in from a WordPress site's database through the WP Rest API.<br>
+      It's showing an excerpt for the first three news items.
+      </div>
     <div v-for="post in posts" v-bind:key="post.id">
       <div class="post">
         <h2 class="post-title" v-html="post.title.rendered"></h2>

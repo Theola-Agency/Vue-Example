@@ -9,15 +9,12 @@ export default {
       excerptFilter: '[&#8230;]'
     }
   },
-
-  created: function () {
+  created () {
     this.fetchData()
   },
-
   watch: {
     currentAuthor: 'fetchData'
   },
-
   methods: {
     fetchData: function () {
       var xhr = new XMLHttpRequest()
