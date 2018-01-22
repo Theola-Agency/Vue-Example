@@ -3,10 +3,10 @@
     <div class="col-12 col-md-6 my-3" v-for="contentItem in contentList" v-bind:key="contentItem.key">
       <div class="card bg-dark text-white h-100">
         <div class="card-body">
-          <textarea name="" id="" cols="30" rows="10" class="form-control"
+          <textarea name="" id="" cols="30" rows="10" class="form-control mb-2"
           v-model="contentItem['.value']"
           @input="updateContent(contentItem, $event.target.value)"></textarea>
-          <p class="pre">{{contentItem['.value']}}</p>
+          <p class="pre mb-0">{{contentItem['.value']}}</p>
         </div>
       </div>
     </div>
