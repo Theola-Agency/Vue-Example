@@ -9,5 +9,8 @@
     <li class="nav-item">
       <router-link class="nav-link" to="/inputs">Inputs</router-link>
     </li>
+    <li class="nav-item">
+      <router-link class="nav-link" to="/layout">Layout</router-link>
+    </li>
   </ul>
 </template>

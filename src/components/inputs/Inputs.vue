@@ -59,7 +59,7 @@ export default {
   },
   // Explicitly set binding data to firebase as an array.
   created() {
-      this.$bindAsArray('contentInDB', dbContent);
+    this.$bindAsArray('contentInDB', dbContent);
   }
 }
 </script>

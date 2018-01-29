@@ -5,6 +5,7 @@ import HomeLayout from '../Home.vue'
 import BlogLayout from '../posts/Posts.vue'
 import ScrollLayout from '../scroll/Scroll.vue'
 import InputsLayout from '../inputs/Inputs.vue'
+import LayoutsLayout from '../layout/Layout.vue'
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ export default new Router({
       path: '/inputs',
       name: 'Inputs',
       component: InputsLayout
+    },
+    {
+      path: '/layout',
+      name: 'Layout',
+      component: LayoutsLayout
     }
   ]
 })

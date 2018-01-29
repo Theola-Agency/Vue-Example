@@ -27,12 +27,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
-
+<style lang = "scss">
+@import "./assets/reset.scss";
 #app {
   padding-top    : 60px;
   padding-bottom : 60px;
   overflow-y     : scroll;
+  overflow-x     : hidden;
   max-height     : 100vh;
 }
 
