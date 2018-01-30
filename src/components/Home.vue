@@ -11,7 +11,7 @@
 
     <transition-group appear
       name="custom-classes-transition"
-      enter-active-class="animated rollIn"
+      enter-active-class="animated bounce"
       v-else>
       <div v-for="(item, key) in headings" :key="key">
         <h2>{{ item.heading }}</h2>

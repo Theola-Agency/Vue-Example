@@ -3,38 +3,45 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HomeLayout from '../Home.vue'
 import BlogLayout from '../posts/Posts.vue'
+import PostLayout from '../posts/Post.vue'
 import ScrollLayout from '../scroll/Scroll.vue'
 import InputsLayout from '../inputs/Inputs.vue'
-import LayoutsLayout from '../layout/Layout.vue'
+import FilterLayout from '../filter/Filter.vue'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
-      path: '/',
-      name: 'Home',
-      component: HomeLayout
+      path      : '/',
+      name      : 'Home',
+      component : HomeLayout
     },
     {
-      path: '/blog',
-      name: 'Blog',
-      component: BlogLayout
+      path      : '/blog',
+      name      : 'Blog',
+      component : BlogLayout
     },
     {
-      path: '/scroll',
-      name: 'Scroll',
-      component: ScrollLayout
+      path      : '/blog/:id',
+      name      : 'Post',
+      component : PostLayout
     },
     {
-      path: '/inputs',
-      name: 'Inputs',
-      component: InputsLayout
+      path      : '/scroll',
+      name      : 'Scroll',
+      component : ScrollLayout
     },
     {
-      path: '/layout',
-      name: 'Layout',
-      component: LayoutsLayout
+      path      : '/inputs',
+      name      : 'Inputs',
+      component : InputsLayout
+    },
+    {
+      path      : '/filter',
+      name      : 'Filter',
+      component : FilterLayout
     }
   ]
 })

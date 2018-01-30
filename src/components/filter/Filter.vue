@@ -1,6 +1,6 @@
 <template>
   <main class="content container">
-    <pre>{{companies}}</pre>
+    <pre v-if="1==2">{{companies}}</pre>
     <nav class="nav">
       <menu class="nav__controls">
 

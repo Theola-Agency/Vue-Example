@@ -10,7 +10,7 @@
       <router-link class="nav-link" to="/inputs">Inputs</router-link>
     </li>
     <li class="nav-item">
-      <router-link class="nav-link" to="/layout">Layout</router-link>
+      <router-link class="nav-link" to="/filter">Filter</router-link>
     </li>
   </ul>
 </template>

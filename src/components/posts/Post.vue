@@ -2,14 +2,13 @@
   <div class="container post-wrapper">
     <h1>WordPress Posts in Vue.js</h1>
     <h2 class="post-title">Latest posts in the 100 Creek dev site</h2>
-    <!--<p>Current Author: <code>{{ currentAuthor }}</code></p>-->
-    <p>Current route name: {{ $route.name }}</p>
+    <p>Current route name: {{ $route.name }} with ID: {{ $route.params.id }}</p>
     <div class="alert alert-info">
       These posts are being pulled in from a WordPress site's database through the WP Rest API.<br>
       It's showing an excerpt for the first three news items.
-    </div>
+      </div>
     <div v-for="post in posts" v-bind:key="post.id">
-      <div class="post">
+      <div class="post" v-if="$route.params.id == post.id" v-bind:id="'post-' + $route.params.id">
         <h2 class="post-title" v-html="post.title.rendered"></h2>
         <a
         v-if="post._embedded['wp:featuredmedia'][0].media_details.sizes['full']"
@@ -18,13 +17,14 @@
           :src="post._embedded['wp:featuredmedia'][0].media_details.sizes['full'].source_url" />
         </a>
         <div class="excerpt"
-        v-if="post.excerpt.rendered"
-        v-html="post.excerpt.rendered.split(excerptFilter)[0]"></div>
+        v-if="post.content.rendered"
+        v-html="post.content.rendered.split(excerptFilter)[0]"></div>
         <div class="entry-meta"
         v-if="post._embedded.author[0]">
           <a class="author-wrap"
           :href="post._embedded.author[0].link">by&nbsp; {{ post._embedded.author[0].name }} </a>
-          <router-link class="btn btn-primary float-right" :to="{name:'Post', params:{id: post.id}}">Read More</router-link>
+          <a class="btn btn-primary read-more float-right" target="_blank"
+          :href="post.link">Read On The Site &raquo;</a>
         </div>
       </div>
     </div>
