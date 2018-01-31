@@ -30,7 +30,7 @@ export default {
     scroll: Scroll
   },
   mixins: [HandleScroll],
-  created() {
+  mounted() {
     this.$store.dispatch("fetchPosts").then(() => {
       this.posts = this.$store.state.posts
       this.excerptFilter = this.$store.state.excerptFilter

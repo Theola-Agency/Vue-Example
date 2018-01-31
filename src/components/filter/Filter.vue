@@ -377,7 +377,7 @@ export default {
 }
 
 .filters {
-  padding: 0 1rem;
+  padding: 0px 1rem 1rem;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
