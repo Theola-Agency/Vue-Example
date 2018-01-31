@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style lang = "scss">
-@import "./assets/reset.scss";
+@import "./assets/reset.css";
 #app {
   padding-top    : 60px;
   padding-bottom : 60px;

@@ -2,7 +2,7 @@
   <main class="content container">
     <pre v-if="1==2">{{companies}}</pre>
     <nav class="nav">
-      <menu class="nav__controls">
+      <menu class="nav__controls w-100">
 
         <li v-for="(active, menu) in menus" class="nav__label"
           :class="{
@@ -13,10 +13,10 @@
           {{ menu }}
         </li>
 
-        <li class="nav__label nav__label--clear" @click="clearAllFilters">Clear all</li>
+        <li class="nav__label nav__label--clear ml-auto" @click="clearAllFilters">Clear all</li>
       </menu>
 
-      <label class="nav__label" @click="modal = !modal">About this pen</label>
+      <!--<label class="nav__label" @click="modal = !modal">About this pen</label>-->
     </nav>
 
     <transition-group name="dropdown" tag="section" class="dropdown" :style="dropdown">
@@ -68,7 +68,7 @@
       </li>
     </transition-group>
 
-    <transition name="modal">
+    <!--<transition name="modal">
       <section v-if="modal" class="modal" @click="modal = false">
         <article class="modal__content" @click.stop>
           <h4 class="modal__title">For the full tutorial</h4>
@@ -83,7 +83,7 @@
           <button class="modal__close" @click="modal = false">&times;</button>
         </article>
       </section>
-    </transition>
+    </transition>-->
   </main>
 </template>
 
@@ -95,7 +95,7 @@ var dbContent = db.ref('fromaws')
 export default {
   data() {
     return {
-      modal: false,
+      /*modal: false,*/
       companies: [],
       contentInDB: [],
       dropdown: { height: 0 },
@@ -186,7 +186,6 @@ export default {
     this.$bindAsArray('companies', dbContent, null, () => (
 
     this.companies.forEach(({ country, keywords, rating }) => {
-      console.log(country)
       this.$set(this.filters.countries, country, false)
 
       if (this.rating.max < rating) this.rating.max = rating
