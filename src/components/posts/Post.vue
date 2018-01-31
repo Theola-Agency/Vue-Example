@@ -6,7 +6,7 @@
     <div class="alert alert-info">
       These posts are being pulled in from a WordPress site's database through the WP Rest API.<br>
       It's showing an excerpt for the first three news items.
-      </div>
+    </div>
     <div v-for="post in posts" v-bind:key="post.id">
       <div class="post" v-if="$route.params.id == post.id" v-bind:id="'post-' + $route.params.id">
         <h2 class="post-title" v-html="post.title.rendered"></h2>
@@ -32,9 +32,8 @@
 </template>
 
 <script>
-import GetPosts from './get-posts.js'
 export default {
-  mixins: [GetPosts]
+  props: ['posts', 'excerptFilter']
 }
 </script>
 

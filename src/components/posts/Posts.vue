@@ -32,9 +32,9 @@
 </template>
 
 <script>
-import GetPosts from './get-posts.js'
+
 export default {
-  mixins: [GetPosts]
+  props: ['posts', 'excerptFilter']
 }
 </script>
 

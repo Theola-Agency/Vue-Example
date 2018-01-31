@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueFire from 'vuefire'
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm'
 
+import { store } from './store/store';
 import router from './components/router/router'
 import App from './App.vue'
 
@@ -15,6 +16,7 @@ Vue.use(BootstrapVue);
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })

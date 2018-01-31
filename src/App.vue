@@ -4,7 +4,7 @@
     <div ref="homecontainer">
     <navbar/>
     <keep-alive>
-      <router-view/>
+      <router-view :posts="posts, excerptFilter"/>
     </keep-alive>
     <scroll
       :scrolldata="scrollPosition"/>
@@ -19,11 +19,23 @@ import HandleScroll from './components/scroll/handle-scroll'
 
 export default {
   name: 'app',
+  data() {
+    return {
+      posts: [],
+      excerptFilter: ''
+    }
+  },
   components: {
     navbar: Navigation,
     scroll: Scroll
   },
-  mixins: [HandleScroll]
+  mixins: [HandleScroll],
+  created() {
+    this.$store.dispatch("fetchPosts").then(() => {
+      this.posts = this.$store.state.posts
+      this.excerptFilter = this.$store.state.excerptFilter
+    })
+  }
 }
 </script>
 
