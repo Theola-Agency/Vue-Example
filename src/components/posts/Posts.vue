@@ -1,6 +1,6 @@
 <template>
   <div class="container post-wrapper">
-    <h1>WordPress Posts in Vue.js</h1>
+    <h1 class="mb-4">WordPress Posts in Vue.js</h1>
     <h2 class="post-title">Latest posts in the 100 Creek dev site</h2>
     <!--<p>Current Author: <code>{{ currentAuthor }}</code></p>-->
     <p>Current route name: {{ $route.name }}</p>
@@ -11,12 +11,12 @@
     <div v-for="post in posts" v-bind:key="post.id">
       <div class="post">
         <h2 class="post-title" v-html="post.title.rendered"></h2>
-        <a
-        v-if="post._embedded['wp:featuredmedia'][0].media_details.sizes['full']"
-        :href="post.link">
+        <router-link :to="{name:'Post',
+        params:{id: post.id}}"
+        v-if="post._embedded['wp:featuredmedia'][0].media_details.sizes['full']">
           <img
           :src="post._embedded['wp:featuredmedia'][0].media_details.sizes['full'].source_url" />
-        </a>
+       </router-link>
         <div class="excerpt"
         v-if="post.excerpt.rendered"
         v-html="post.excerpt.rendered.split(excerptFilter)[0]"></div>

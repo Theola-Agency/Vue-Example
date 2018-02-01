@@ -1,5 +1,6 @@
 <template>
   <main class="content container">
+    <h1 class="mb-4">Filtered Data</h1>
     <pre v-if="1==2">{{companies}}</pre>
     <nav class="nav">
       <menu class="nav__controls w-100">

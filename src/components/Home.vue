@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>The below is from a Firebase Database</h1>
+    <h1 class="mb-4">The below is from a Firebase Database</h1>
     <div class="sk-folding-cube" v-if="headings.length == 0">
       <div class="sk-cube1 sk-cube"></div>
       <div class="sk-cube2 sk-cube"></div>

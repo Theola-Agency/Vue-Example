@@ -1,6 +1,6 @@
 <template>
   <div class="container post-wrapper">
-    <h1>WordPress Posts in Vue.js</h1>
+    <h1 class="mb-4">WordPress Posts in Vue.js</h1>
     <h2 class="post-title">Latest posts in the 100 Creek dev site</h2>
     <p>Current route name: {{ $route.name }} with ID: {{ $route.params.id }}</p>
     <div class="alert alert-info">

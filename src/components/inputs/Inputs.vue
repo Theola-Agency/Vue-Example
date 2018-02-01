@@ -1,6 +1,9 @@
 <template>
   <div class="container">
     <div class="row">
+      <div class="col-12">
+        <h1 class="mb-4">Data Inputs</h1>
+      </div>
       <div class="col-12 col-md-6">
         <div class="my-3" v-for="contentItem in contentList" v-bind:key="contentItem.key">
           <div class="card bg-dark text-white h-100">
@@ -16,8 +19,8 @@
       </div>
       <div class="col-md-6 my-3">
         <div class="sticky">
-          <h3>Inputted Data</h3>
-          <pre class="mt-2">{{ $data }}</pre>
+          <h3>Data from Database</h3>
+          <pre>{{ $data }}</pre>
           <p>P.S. This column uses "sticky" CSS</p>
           <hr>
           <h3>Disabling Inputs</h3>
