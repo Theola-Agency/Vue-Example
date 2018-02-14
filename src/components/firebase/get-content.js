@@ -9,6 +9,6 @@ const config = {
   storageBucket     : 'test-vue-21d56.appspot.com',
   messagingSenderId : '978957331343'
 }
-const homeContent = firebase.initializeApp(config)
+const content = firebase.initializeApp(config)
 
-export const db = homeContent.database();
+export const db = content.database();

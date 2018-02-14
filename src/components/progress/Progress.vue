@@ -45,64 +45,64 @@ export default {
 
 <style lang="scss" scoped>
 .livedata {
-    position: relative;
+  position: relative;
+  display: inline-block;
+  padding: 0;
+  text-align: center;
+  &>.client {
     display: inline-block;
-    padding: 0;
+    position: relative;
     text-align: center;
-    &>.client {
-        display: inline-block;
-        position: relative;
-        text-align: center;
-        color: #93A2AC;
-        font-weight:100;
-        margin: 2rem;
-        &:before {
-            content: attr(data-name);
-            position: absolute;
-            width: 100%;
-            bottom: -2rem;
-            font-weight:400;
-        }
-        &:after {
-            content: attr(data-percent);
-            position: absolute;
-            width: 100%;
-            top: 3.7rem;
-            left: 0;
-            font-size: 2rem;
-            text-align: center;
-        }
+    color: #93A2AC;
+    font-weight:100;
+    margin: 2rem;
+    &:before {
+      content: attr(data-name);
+      position: absolute;
+      width: 100%;
+      bottom: -2rem;
+      font-weight:400;
     }
-    svg {
-      width: 10rem;
-      height: 10rem;
-      fill: white;
+    &:after {
+      content: attr(data-percent);
+      position: absolute;
+      width: 100%;
+      top: 3.5rem;
+      left: 0;
+      font-size: 2rem;
+      text-align: center;
+    }
+  }
+  svg {
+    width: 10rem;
+    height: 10rem;
+    fill: white;
 
-      &:nth-child(1) {
+    &:nth-child(1) {
 
-        path {
-          stroke: orange;
-          stroke-width: 19px;
-        }
-      }
-
-      &:nth-child(2) {
-        position: absolute;
-        left: 0;
-        top: 0;
-        transform: rotate(-90deg);
-
-        path {
-          fill: none;
-          stroke-width: 21;
-          stroke-dasharray: 629;
-          stroke: #ddd;
-          opacity:1;
-          animation: load 1s;
-          transition: stroke-dashoffset 1s;
-        }
+      path {
+        stroke: orange;
+        stroke-width: 19px;
       }
     }
+
+    &:nth-child(2) {
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform: rotate(-90deg);
+
+      path {
+        fill: none;
+        stroke-width: 21;
+        stroke-dasharray: 629;
+        stroke: #ddd;
+        opacity:1;
+        animation: load 1s;
+        transition: stroke-dashoffset 1s;
+      }
+    }
+  }
 }
 @keyframes load{0%{stroke-dashoffset:0}}
 </style>

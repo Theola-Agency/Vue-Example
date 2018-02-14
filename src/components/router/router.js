@@ -9,6 +9,7 @@ import InputsLayout from '../inputs/Inputs.vue'
 import FilterLayout from '../filter/Filter.vue'
 import NotFoundComponent from '../NotFound.vue'
 import ProgressLayout from '../progress/Progress.vue'
+import UploadLayout from '../imgupload/ImgUpload.vue'
 
 Vue.use(Router)
 
@@ -49,6 +50,11 @@ export default new Router({
       path      : '/progress',
       name      : 'Progress',
       component : ProgressLayout
+    },
+    {
+      path      : '/upload',
+      name      : 'Upload',
+      component : UploadLayout
     },
     { path: '*', component: NotFoundComponent }
   ]

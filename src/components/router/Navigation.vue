@@ -15,5 +15,8 @@
     <li class="nav-item">
       <router-link class="nav-link" to="/progress">Progress</router-link>
     </li>
+    <li class="nav-item">
+      <router-link class="nav-link" to="/upload">Upload</router-link>
+    </li>
   </ul>
 </template>

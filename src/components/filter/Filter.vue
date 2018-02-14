@@ -281,6 +281,11 @@ export default {
   }
 }
 
+.content__list {
+  padding-left: 0;
+  padding-right: 15px;
+}
+
 .nav {
   display: flex;
   justify-content: space-between;
@@ -290,7 +295,10 @@ export default {
   padding: 2rem 0.5rem 1rem;
   border-bottom: 1px solid #c5d0d1;
 
-  &__controls { display: flex }
+  &__controls {
+    display: flex;
+    padding-left: 0;
+  }
 
   &__icon {
     width: 1rem;

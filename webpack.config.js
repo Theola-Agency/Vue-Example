@@ -59,13 +59,23 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/
-      },
+      },/*
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(gif)$/,
         loader: 'file-loader',
         options: {
-          name: '[name].[ext]?[hash]'
+          name: 'assets/[name].[ext]?'
         }
+      },*/
+      {
+        test: /\.(png|jp(e*)g|svg)$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 20000, // Convert images < 8kb to base64 strings
+            name: 'assets/[name].[ext]?[hash]'
+          }
+        }]
       }
     ]
   },
