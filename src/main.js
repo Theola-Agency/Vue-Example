@@ -9,7 +9,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 Vue.config.productionTip = false
 Vue.use(VueFire)
-Vue.use(require('@websanova/vue-upload'))
 
 new Vue({
   el: '#app',

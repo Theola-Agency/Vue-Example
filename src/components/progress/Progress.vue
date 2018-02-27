@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <h1 class="mb-4">Progress Indicators</h1>
-    <div class="alert alert-info">Data comes from a Firebase Database.<br>
-    You can make changes in the database and they are immediately reflected here without needing to reload the page.</div>
+    <div class="alert alert-info"><h4 class="mb-0">Data comes from a Firebase Database.</h4><br>
+    You can make changes in the text fields below and they are immediately reflected in the database without needing to reload the page or submit a form.</div>
     <div class="livedata">
       <div class="client position-relative" v-for="client in clients" v-bind:key="client['.key']"
       :data-name="client.text"
@@ -16,6 +16,10 @@
           d="M200,100 C200,44.771525 155.228475,0 100,0 C44.771525,0 0,44.771525 0,100 C0,155.228475 44.771525,200 100,200 C155.228475,200 200,155.228475 200,100 Z"
           :stroke-dashoffset="client.percentage * 6.3"></path>
         </svg>
+
+        <input class="editable"
+        v-model="client.percentage"
+        @input="updateTodoText(client, $event.target.value)" />
       </div>
     </div>
   </div>
@@ -38,6 +42,11 @@ export default {
   // Explicitly set binding data to firebase as an array.
   created() {
     this.$bindAsArray('clients', dbContent);
+  },
+  methods: {
+    updateTodoText: function(todo, newText) {
+      dbContent.child(todo['.key']).child('percentage').set(newText)
+    }
   }
 }
 </script>
@@ -71,6 +80,18 @@ export default {
       left: 0;
       font-size: 2rem;
       text-align: center;
+    }
+    .editable {
+      position: absolute;
+      top: 100%;
+      margin: 50px auto;
+      width: 60px;
+      text-align: center;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      padding: 6px;
+      left: 0;
+      right: 0;
     }
   }
   svg {
