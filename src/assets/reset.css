@@ -1,6 +1,6 @@
 /* reset */
 
-b, i, em, strong,
+b, i,
 th, td, pre, ins, del, address,
 input, select, button, textarea {
   text-transform: inherit;
