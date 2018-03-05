@@ -16,16 +16,11 @@
           <img
           :src="post._embedded['wp:featuredmedia'][0].media_details.sizes['full'].source_url" />
         </a>
+        <a class="btn btn-primary read-more float-right" target="_blank"
+        :href="post.link">Read On The Site &raquo;</a>
         <div class="excerpt"
         v-if="post.content.rendered"
         v-html="post.content.rendered.split(excerptFilter)[0]"></div>
-        <div class="entry-meta"
-        v-if="post._embedded.author[0]">
-          <a class="author-wrap"
-          :href="post._embedded.author[0].link">by&nbsp; {{ post._embedded.author[0].name }} </a>
-          <a class="btn btn-primary read-more float-right" target="_blank"
-          :href="post.link">Read On The Site &raquo;</a>
-        </div>
       </div>
     </div>
   </div>
@@ -33,7 +28,23 @@
 
 <script>
 export default {
-  props: ['posts', 'excerptFilter']
+  data() {
+    return {
+      posts: this.$store.state.posts,
+      excerptFilter: this.$store.state.excerptFilter,
+      currentPage: this.$store.state.currentPage,
+      totalPages: this.$store.state.totalPages
+    }
+  },
+  created () {
+    this.$store.commit('POST_ID', this.$route.params.id)
+    this.$store.dispatch("fetchPost").then(() => {
+      this.posts = this.$store.state.posts
+      this.excerptFilter = this.$store.state.excerptFilter
+      this.currentPage = this.$store.state.currentPage
+      this.totalPages = this.$store.state.totalPages
+    })
+  }
 }
 </script>
 

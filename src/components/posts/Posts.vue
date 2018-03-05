@@ -8,24 +8,33 @@
       These posts are being pulled in from a WordPress site's database through the WP Rest API.<br>
       It's showing an excerpt for the first three news items.
     </div>
-    <div v-for="post in posts" v-bind:key="post.id">
-      <div class="post">
-        <h2 class="post-title" v-html="post.title.rendered"></h2>
+    <div class="text-right" v-if="totalPages > 0">Current Page: {{currentPage}} of {{totalPages}}</div>
+
+    <nav aria-label="Page navigation" class="mt-2" v-if="totalPages > 0">
+      <ul class="pagination text-right float-right">
+        <li class="page-item"><a class="page-link" @click.prevent="updatePage(currentPage-1)">Previous</a></li>
+
+        <li class="page-item" v-for="(index, key) in posts.length+1" :key="key">
+          <a class="page-link" @click.prevent="updatePage(key+1)">{{key+1}}</a>
+        </li>
+
+        <li class="page-item"><a class="page-link" @click.prevent="updatePage(currentPage+1)">Next</a></li>
+      </ul>
+    </nav>
+
+    <div v-for="post in posts" v-bind:key="post.id" v-if="post.id">
+      <div class="post d-flex flex-column w-100">
+        <h2 class="post-title" v-if="post.title" v-html="post.title.rendered"></h2>
         <router-link :to="{name:'Post',
         params:{id: post.id}}"
-        v-if="post._embedded['wp:featuredmedia'][0].media_details.sizes['full']">
+        v-if="post._embedded">
           <img
           :src="post._embedded['wp:featuredmedia'][0].media_details.sizes['full'].source_url" />
-       </router-link>
+        </router-link>
+        <router-link class="btn btn-primary ml-auto" :to="{name:'Post', params:{id: post.id}}">Read More</router-link>
         <div class="excerpt"
-        v-if="post.excerpt.rendered"
+        v-if="post.excerpt"
         v-html="post.excerpt.rendered.split(excerptFilter)[0]"></div>
-        <div class="entry-meta"
-        v-if="post._embedded.author[0]">
-          <a class="author-wrap"
-          :href="post._embedded.author[0].link">by&nbsp; {{ post._embedded.author[0].name }} </a>
-          <router-link class="btn btn-primary float-right" :to="{name:'Post', params:{id: post.id}}">Read More</router-link>
-        </div>
       </div>
     </div>
   </div>
@@ -34,7 +43,39 @@
 <script>
 
 export default {
-  props: ['posts', 'excerptFilter']
+  /*props: ['posts', 'excerptFilter', 'currentPage', 'totalPages'],*/
+  data () {
+    return {
+      posts: 'test',
+      excerptFilter: null,
+      currentPage: 0,
+      totalPages: 0
+    }
+  },
+  methods: {
+    updatePage (page) {
+      if (page <= this.totalPages && page > 0) {
+
+        this.currentPage = page
+        this.$store.commit('CHANGE_PAGE', page)
+        this.$store.dispatch("fetchPosts").then(() => {
+          this.posts = this.$store.state.posts
+          this.excerptFilter = this.$store.state.excerptFilter
+          this.currentPage = this.$store.state.currentPage
+          this.totalPages = this.$store.state.totalPages
+        })
+
+      }
+    }
+  },
+  created() {
+    this.$store.dispatch("fetchPosts").then(() => {
+      this.posts = this.$store.state.posts
+      this.excerptFilter = this.$store.state.excerptFilter
+      this.currentPage = this.$store.state.currentPage
+      this.totalPages = this.$store.state.totalPages
+    })
+  }
 }
 </script>
 
