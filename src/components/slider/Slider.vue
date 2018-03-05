@@ -1,26 +1,25 @@
 <template>
-  <div id='demo'>
-    <div id='slider'>
+  <div class='container slider'>
 
-      <input type='radio' name='slider' selected='false' :checked='key === 0'
-      v-for='(item, key) in items' :key='key' :id="'slide' + (key+1)" v-once>
+    <input type='radio' name='slider' selected='false' :checked="key+1 === checked"
+    v-for='(item, key) in items' :key='"check" + key' :id="'slide' + (key+1)">
 
-      <div id='slides'>
-        <div id='overflow'>
-          <div class='inner'>
-            <article v-for='(item, key) in items' :key='key' class='slide'>
-              <div class='image-container'>
-                <img :src='item.img' alt='item.title' />
-              </div>
-              <div class='title'>{{item.title}}</div>
-              <div class='teaser'>{{item.content}}</div>
-            </article>
-          </div> <!-- .inner -->
-        </div> <!-- #overflow -->
-      </div>
-
-      <label v-for='(item, key) in items' :key='key' :for="'slide' + (key+1)"></label>
+    <div class='slides'>
+      <div class='inner' :style="{width: items.length * 100 + '%'}" :data-items="items.length">
+        <article v-for='(item, key) in items' :key='"article" + key' class='slide'>
+          <div class='image-container'>
+            <img :src='item.img' alt='item.title' />
+          </div>
+          <div class='title'>{{item.title}}</div>
+          <div class='teaser'>{{item.content}}</div>
+        </article>
+      </div> <!-- .inner -->
     </div>
+
+    <label v-for='(item, key) in items' :key='"label" + key' :for="'slide' + (key+1)" @click="check(key+1)"></label>
+
+    <div @click="check(checked-1)">Prev</div>
+    <div @click="check(checked+1)">Next</div>
   </div>
 </template>
 
@@ -45,16 +44,38 @@ let items = [{
 }]
 
 export default {
-  name: 'app',
   data () {
     return {
-      items: items
+      items: items,
+      checked: 1
+    }
+  },
+  methods: {
+    check (item) {
+      switch (item) {
+        case 0:
+          this.checked = this.items.length
+          break
+        case this.items.length+1:
+          this.checked = 1
+          break
+        default:
+          this.checked = item
+          break
+      }
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+
+.slider {
+  max-width  : 600px;
+  text-align : center;
+  margin     : 0 auto;
+}
+
 .slide {
 
   .image-container {
@@ -75,45 +96,40 @@ export default {
   }
 }
 
-#slider {
-  max-width  : 600px;
-  text-align : center;
-  margin     : 0 auto;
-}
-
-#overflow {
+.slides {
   width    : 100%;
   overflow : hidden;
+
+  .inner {
+    transform  : translateZ(0);
+    transition : all 500ms ease-in-out;
+
+    @for $i from 1 through 10 {
+      &[data-items="#{$i}"] {
+
+        article {
+          width : percentage(1 / $i);
+        }
+      }
+    }
+  }
+
+  article {
+    float : left;
+  }
 }
 
-#slides .inner {
-  width : 400%;
-}
+@for $i from 1 through 10 {
+  #slide#{$i}:checked {
 
-#slides .inner {
-  transform  : translateZ(0);
-  transition : all 500ms ease-in-out;
-}
+    ~ .slides .inner {
+      margin-left : percentage(-($i - 1));
+    }
 
-#slides article {
-  width : 25%;
-  float : left;
-}
-
-#slide1:checked ~ #slides .inner {
-  margin-left : 0;
-}
-
-#slide2:checked ~ #slides .inner {
-  margin-left : -100%;
-}
-
-#slide3:checked ~ #slides .inner {
-  margin-left : -200%;
-}
-
-#slide4:checked ~ #slides .inner {
-  margin-left : -300%;
+    ~ label[for="slide#{$i}"] {
+      background : #333;
+    }
+  }
 }
 
 input[type='radio'] {
@@ -127,9 +143,5 @@ label {
   width         : 10px;
   height        : 10px;
   border-radius : 5px;
-}
-
-#slide1 :checked ~ label {
-  background : #333;
 }
 </style>
