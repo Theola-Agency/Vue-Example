@@ -13,19 +13,21 @@
           <div class='title'>{{item.title}}</div>
           <div class='teaser'>{{item.content}}</div>
         </article>
-      </div> <!-- .inner -->
+      </div><!-- .inner -->
     </div>
 
-    <label v-for='(item, key) in items' :key='"label" + key' :for="'slide' + (key+1)" @click="check(key+1)"></label>
+    <label v-for='(item, key) in items' :key='"label" + key' :for="'slide' + (key+1)" @click="changeSlide(key+1)"></label>
 
-    <div @click="check(checked-1)">Prev</div>
-    <div @click="check(checked+1)">Next</div>
+    <div @click="changeSlide(checked-1)">Prev</div>
+    <div @click="changeSlide(checked+1)">Next</div>
   </div>
 </template>
 
 <script>
 // define slider component
-let items = [{
+
+let timer = null, /* Controls timer for automatic sliding */
+items = [{
   title: 'Article 1',
   img: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/rock.jpg',
   content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ex arcu, fringilla in urna quis, ultrices efficitur neque. Morbi lacinia arcu tellus, a imperdiet'
@@ -46,12 +48,14 @@ let items = [{
 export default {
   data () {
     return {
-      items: items,
-      checked: 1
+      items: items, /* Contains slide data */
+      checked: 1, /* Controls which slide is shown */
+      autoPlay: 4000 /* Amount of time for slide to show in ms. Set to 0 to disable */
     }
   },
   methods: {
-    check (item) {
+    changeSlide (item) {
+      this.resetTimer()
       switch (item) {
         case 0:
           this.checked = this.items.length
@@ -63,7 +67,24 @@ export default {
           this.checked = item
           break
       }
+    },
+    startTimer () {
+      timer = setInterval(() => {
+        this.changeSlide(this.checked+1)
+        }, this.autoPlay)
+    },
+    resetTimer () {
+      clearInterval(timer)
+      this.startTimer()
     }
+  },
+  mounted () {
+    if(this.autoPlay > 0) {
+      this.startTimer()
+    }
+  },
+  beforeDestroy() {
+    clearInterval(timer)
   }
 }
 </script>
@@ -74,6 +95,20 @@ export default {
   max-width  : 600px;
   text-align : center;
   margin     : 0 auto;
+
+  input[type='radio'] {
+    display : none;
+  }
+
+  label {
+    background    : #CCC;
+    display       : inline-block;
+    width         : 10px;
+    height        : 10px;
+    margin        : 0 3px;
+    border-radius : 5px;
+    cursor        : pointer;
+  }
 }
 
 .slide {
@@ -88,11 +123,6 @@ export default {
   .title {
     font-size   : 20px;
     font-weight : 700;
-    text-align  : left;
-  }
-
-  .teaser {
-    text-align : left;
   }
 }
 
@@ -101,6 +131,7 @@ export default {
   overflow : hidden;
 
   .inner {
+    display    : flex;
     transform  : translateZ(0);
     transition : all 500ms ease-in-out;
 
@@ -112,10 +143,6 @@ export default {
         }
       }
     }
-  }
-
-  article {
-    float : left;
   }
 }
 
@@ -130,18 +157,5 @@ export default {
       background : #333;
     }
   }
-}
-
-input[type='radio'] {
-  display : none;
-}
-
-label {
-  background    : #CCC;
-  display       : inline-block;
-  cursor        : pointer;
-  width         : 10px;
-  height        : 10px;
-  border-radius : 5px;
 }
 </style>
