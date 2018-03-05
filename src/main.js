@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueFire from 'vuefire'
+import 'string.prototype.startswith'
 
 import { store } from './store/store';
 import router from './components/router/router'
