@@ -9,6 +9,7 @@ import InputsLayout from '../inputs/Inputs.vue'
 import FilterLayout from '../filter/Filter.vue'
 import NotFoundComponent from '../NotFound.vue'
 import ProgressLayout from '../progress/Progress.vue'
+import SliderLayout from '../slider/Slider.vue'
 /* import UploadLayout from '../imgupload/ImgUpload.vue' */
 
 Vue.use(Router)
@@ -45,6 +46,11 @@ export default new Router({
       path      : '/filter',
       name      : 'Filter',
       component : FilterLayout
+    },
+    {
+      path      : '/slider',
+      name      : 'Slider',
+      component : SliderLayout
     },
     {
       path      : '/progress',
