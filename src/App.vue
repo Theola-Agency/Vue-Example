@@ -46,7 +46,7 @@ export default {
   padding-bottom : 60px;
   overflow-y     : scroll;
   overflow-x     : hidden;
-  max-height     : 100vh;
+  height         : 100vh;
 }
 
 pre {
