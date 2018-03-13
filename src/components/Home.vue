@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+
     <h1 class="mb-4">The below is from a Firebase Database</h1>
 
     <transition-group appear

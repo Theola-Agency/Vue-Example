@@ -20,7 +20,8 @@ export default new Router({
     {
       path      : '/',
       name      : 'Home',
-      component : HomeLayout
+      component: HomeLayout,
+      props: (route) => ({ title: 'bling' })
     },
     {
       path      : '/blog',

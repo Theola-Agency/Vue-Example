@@ -26,8 +26,7 @@
 <script>
 // define slider component
 
-let timer = null, /* Controls timer for automatic sliding */
-items = [{
+let items = [{
   title: 'Article 1',
   img: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/rock.jpg',
   content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ex arcu, fringilla in urna quis, ultrices efficitur neque. Morbi lacinia arcu tellus, a imperdiet'
@@ -50,12 +49,16 @@ export default {
     return {
       items: items, /* Contains slide data */
       checked: 1, /* Controls which slide is shown */
-      autoPlay: 4000 /* Amount of time for slide to show in ms. Set to 0 to disable */
+      autoPlay: 0, /* Amount of time for slide to show in ms. Set to 0 to disable */
+      timer: null /* Controls timer for automatic sliding */
     }
   },
   methods: {
     changeSlide (item) {
-      this.resetTimer()
+
+      if(this.autoPlay > 0) {
+        this.resetTimer()
+      }
       switch (item) {
         case 0:
           this.checked = this.items.length
@@ -69,12 +72,12 @@ export default {
       }
     },
     startTimer () {
-      timer = setInterval(() => {
+      this.timer = setInterval(() => {
         this.changeSlide(this.checked+1)
         }, this.autoPlay)
     },
     resetTimer () {
-      clearInterval(timer)
+      clearInterval(this.timer)
       this.startTimer()
     }
   },
@@ -84,7 +87,7 @@ export default {
     }
   },
   beforeDestroy() {
-    clearInterval(timer)
+    clearInterval(this.timer)
   }
 }
 </script>

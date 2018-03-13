@@ -21,7 +21,11 @@ export default {
     navbar: Navigation,
     scroll: Scroll
   },
-  mixins: [HandleScroll]
+  mixins: [HandleScroll],
+  props: ['title'],
+  created () {
+    document.title = this.title
+  }
 }
 </script>
 
